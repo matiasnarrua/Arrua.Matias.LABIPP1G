@@ -35,3 +35,7 @@ void inicializarTrabajos(eTrabajo vec[], int tam );
 void listarServicios(eServicio servicios[], int tamSer );
 
 int altaTrabajo ( int idx,eBicicleta bicicletas[], int tamB, eColor colores[], int tamCol, eTipo tipos[], int tamTip, eTrabajo trabajos[], int tamtra, eServicio servicios[], int tamSer );
+
+int cargarDescripcionServicio(char descripcion[], int id, eServicio servicios[], int tamSer );
+
+int listarTrabajos(eBicicleta bicicletas[], int tamB, eColor colores[], int tamCol, eTipo tipos[], int tamTip, eTrabajo trabajos[], int tamTra, eServicio servicios[], int tamSer);

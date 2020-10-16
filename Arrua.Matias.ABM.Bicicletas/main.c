@@ -4,8 +4,9 @@
 
 #include "bicicletas.h"
 #include "trabajos.h"
+#include "hardcodear.h"
 
-#define TAM_B 5
+#define TAM_B 10
 #define TAM_TIPO 4
 #define TAM_C 5
 #define TAM_S 4
@@ -19,6 +20,7 @@ int main()
     char confirma;
     int proximoId = 1000;
     int proximoId2=1;
+    int flag = 0;
     eBicicleta bicicletas[TAM_B];
     eTipo tipos[TAM_TIPO] = { { 1000, "Rutera" },{ 1001, "Carrera" },{ 1002, "Mountain" },{ 1003, "BMX" } };
     eColor colores[TAM_C]= { { 5000, "Gris" },{ 5001, "Negro" },{ 5002, "Blanco" },{ 5003, "Azul"},{ 5004, "Rojo" } };
@@ -30,6 +32,7 @@ int main()
     inicializarTrabajos(trabajos, TAM_T);
 
 
+
     do
     {
         switch(menu())
@@ -37,39 +40,62 @@ int main()
 
         case 1:
             if ( altaBicicleta(proximoId, bicicletas, TAM_B, colores,TAM_C,tipos, TAM_TIPO) == 1)
-            {
+            { flag = 1;
                 proximoId ++ ;
             }
             break;
 
         case 2:
+            if(flag == 1){
             modificarBicicleta(bicicletas, TAM_B, colores,TAM_C,tipos, TAM_TIPO);
+            }
+            else{
+                printf("Error.... Primero debe realizar el alta de una bicicleta");
+            }
             break;
 
         case 3:
+             if(flag == 1){
             bajaBicicleta(bicicletas, TAM_B, colores,TAM_C,tipos, TAM_TIPO);
+            }
+            else{
+                printf("Error.... Primero debe realizar el alta de una bicicleta");
+            }
+
             break;
 
         case 4:
+             if(flag == 1){
             listarBicicletas(bicicletas,TAM_B,colores,TAM_C,tipos,TAM_TIPO);
+            }
+            else{
+                printf("Error.... Primero debe realizar el alta de una bicicleta");
+            }
+
+
             break;
 
         case 5:
+            system("cls");
             listarTipos(tipos,TAM_TIPO);
 
             break;
 
         case 6:
+            system("cls");
             listarColores(colores,TAM_C);
             break;
         case 7:
             listarServicios(servicios,TAM_S);
             break;
         case 8:
-             altaTrabajo(proximoId2,bicicletas,TAM_B,colores,TAM_C,tipos,TAM_TIPO,trabajos,TAM_T,servicios,TAM_S);
+             if ( altaTrabajo(proximoId2,bicicletas,TAM_B,colores,TAM_C,tipos,TAM_TIPO,trabajos,TAM_T,servicios,TAM_S) == 1)
+            { flag = 1;
+                proximoId2 ++ ;
+            }
             break;
         case 9:
-            //  ListarTrabajos
+              listarTrabajos(bicicletas,TAM_B,colores,TAM_C,tipos,TAM_TIPO,trabajos,TAM_T,servicios,TAM_S);
             break;
 
         case 10:

@@ -30,11 +30,24 @@ void listarServicios(eServicio servicios[], int tamSer )
 }
 
 
+int buscarTrabajosLibres (eTrabajo vec[],int tamTra )
+{
+    int indice = -1;
+    for(int i=0; i<tamTra; i++)
+    {
+        if(vec[i].isEmpty==1)
+        {
+            indice = i;
+            break;
+        }
+    }
+    return indice;
+}
 
 int altaTrabajo ( int idx,eBicicleta bicicletas[], int tamB, eColor colores[], int tamCol, eTipo tipos[], int tamTip, eTrabajo trabajos[], int tamTra, eServicio servicios[], int tamSer )
 {
     int todoOk = 0;
-    int indice = buscarLibres(trabajos, tamTra);
+    int indice = buscarTrabajosLibres(trabajos, tamTra);
 
     eTrabajo auxTrabajo;
 
@@ -52,7 +65,7 @@ int altaTrabajo ( int idx,eBicicleta bicicletas[], int tamB, eColor colores[], i
 
         listarBicicletas(bicicletas,tamB,colores,tamCol,tipos,tamTip);
         printf("***********************************************\n");
-        printf("Seleccione el id del auto: \n\n");
+        printf("Seleccione el id de la bicicleta: \n\n");
         scanf("%d", &auxTrabajo.idBicicleta);
 
         system("cls");
@@ -72,19 +85,20 @@ int altaTrabajo ( int idx,eBicicleta bicicletas[], int tamB, eColor colores[], i
 
 
 
-int ListarTrabajos(eBicicleta bicicletas[], int tamB, eColor colores[], int tamCol, eTipo tipos[], int tamTip, eTrabajo trabajos[], int tamTra, eServicio servicios[], int tamSer)
+int listarTrabajos(eBicicleta bicicletas[], int tamB, eColor colores[], int tamCol, eTipo tipos[], int tamTip, eTrabajo trabajos[], int tamTra, eServicio servicios[], int tamSer)
 {
 
     int error =1;
 
      char descColor[20];
                 char descTipo[20];
+                char descServicio[20];
 
 
     system("cls");
     printf("***** Trabajos *****\n\n ");
 
-     printf("       Id     Marca       Tipo          Color     Rodado  \n");
+     printf("       Id     Marca       Tipo        Color       Rodado        Servicio   \n");
 
     for(int i = 0; i < tamB; i++)
     {
@@ -94,7 +108,8 @@ int ListarTrabajos(eBicicleta bicicletas[], int tamB, eColor colores[], int tamC
             {
                 cargarDescripcionColor(descColor,bicicletas[i].idColor,colores,tamCol);
                 cargarDescripcionTipo(descTipo,bicicletas[i].idTipo,tipos,tamTip);
-                printf("%10d   %10s     %15s  %15s  %4d \n", bicicletas[i].id, bicicletas.marca[i], descTipo,descColor,bicicletas[i].rodado );
+                cargarDescripcionServicio(descServicio,servicios[i].id,servicios,tamSer);
+                printf("%10d   %10s     %15s  %15s    %4d   %10s\n", bicicletas[i].id, bicicletas[i].marca, descTipo,descColor,bicicletas[i].rodado, descServicio);
             }
         }
 
@@ -102,7 +117,22 @@ int ListarTrabajos(eBicicleta bicicletas[], int tamB, eColor colores[], int tamC
 
 
 
-
     return error;
 }
 
+int cargarDescripcionServicio(char descripcion[], int id, eServicio servicios[], int tamSer )
+{
+
+    int todoOk = 0;
+    for(int i=0; i <tamSer; i++)
+    {
+        if(servicios[i].id == id)
+        {
+            strcpy(descripcion, servicios[i].descripcion);
+            todoOk = 1;
+
+        }
+
+    }
+    return todoOk;
+}

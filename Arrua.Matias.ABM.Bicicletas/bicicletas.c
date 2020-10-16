@@ -10,8 +10,8 @@ int menu()
     int opcion;
 
     system("cls");
-    printf("***** Gestion del Lavadero *****\n\n");
-    printf("1. Alta Bicicleta\n2. Modificar Bicicleta\n3. Baja Bicicleta\n4. Listar Bicicleta\n5. Listar Tipos\n6. Listar Colores\n7. Listar Servicios\n8. Alta Trabajo\n9. Listar Trabajos\n10. Salir\n\n");
+    printf("***** Gestion de la Bicicleteria *****\n\n");
+    printf("1. Alta Bicicleta\n2. Modificar Bicicleta\n3. Baja Bicicleta\n4. Listar Bicicletas\n5. Listar Tipos\n6. Listar Colores\n7. Listar Servicios\n8. Alta Trabajo\n9. Listar Trabajos\n10. Salir\n\n");
     fflush(stdin);
     printf("Ingrese opcion: ");
     scanf("%d", &opcion);
@@ -241,13 +241,13 @@ void modificarBicicleta (eBicicleta bicicletas[], int tamB, eColor colores[], in
     {
         mostrarBicicleta(bicicletas[indice],colores, tamCol,tipos,tamTip);
 
-        printf("Modificar este Auto[S/N] ?");
+        printf("Modificar esta Bicicleta[S/N] ?");
         fflush(stdin);
         scanf("%c", &confirma);
 
         if(confirma == 's')
         {
-            printf("Seleccione que desea modificar:\n1_Color\n2_Rodado\n\n");
+            printf("Seleccione que desea modificar:\n1_Tipo\n2_Rodado\n\n");
             scanf("%d",&opcion);
 
             switch(opcion)

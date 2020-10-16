@@ -1,26 +1,31 @@
 # depslib dependency file v1.0
-1602888130 source:c:\users\mati\documents\prog 1\arrua.matias.abm.bicicletas\main.c
+1602891725 source:c:\users\mati\documents\prog 1\arrua.matias.abm.bicicletas\main.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"bicicletas.h"
 	"trabajos.h"
+	"hardcodear.h"
 
 1602886706 c:\users\mati\documents\prog 1\arrua.matias.abm.bicicletas\bicicletas.h
 
-1602886853 c:\users\mati\documents\prog 1\arrua.matias.abm.bicicletas\trabajos.h
+1602890174 c:\users\mati\documents\prog 1\arrua.matias.abm.bicicletas\trabajos.h
 
-1602888486 source:c:\users\mati\documents\prog 1\arrua.matias.abm.bicicletas\bicicletas.c
+1602891097 source:c:\users\mati\documents\prog 1\arrua.matias.abm.bicicletas\bicicletas.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"bicicletas.h"
 	"trabajos.h"
 
-1602887759 source:c:\users\mati\documents\prog 1\arrua.matias.abm.bicicletas\trabajos.c
+1602891097 source:c:\users\mati\documents\prog 1\arrua.matias.abm.bicicletas\trabajos.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"bicicletas.h"
 	"trabajos.h"
+
+1602891752 c:\users\mati\documents\prog 1\arrua.matias.abm.bicicletas\hardcodear.h
+
+1602891765 source:c:\users\mati\documents\prog 1\arrua.matias.abm.bicicletas\hardcodear.c
 
