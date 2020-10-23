@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1602891725 source:c:\users\mati\documents\prog 1\arrua.matias.abm.bicicletas\main.c
+1602891923 source:c:\users\mati\documents\prog 1\arrua.matias.abm.bicicletas\main.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -25,7 +25,182 @@
 	"bicicletas.h"
 	"trabajos.h"
 
-1602891752 c:\users\mati\documents\prog 1\arrua.matias.abm.bicicletas\hardcodear.h
+1602891853 c:\users\mati\documents\prog 1\arrua.matias.abm.bicicletas\hardcodear.h
 
 1602891765 source:c:\users\mati\documents\prog 1\arrua.matias.abm.bicicletas\hardcodear.c
+
+1603477816 source:c:\users\mati\desktop\arrua.matias.abm.bicicletas\colores.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"bicicletas.h"
+	"trabajos.h"
+	"tipo.h"
+	"colores.h"
+
+1603478960 c:\users\mati\desktop\arrua.matias.abm.bicicletas\bicicletas.h
+	"tipo.h"
+	"colores.h"
+
+1603478353 c:\users\mati\desktop\arrua.matias.abm.bicicletas\tipo.h
+
+1603477750 c:\users\mati\desktop\arrua.matias.abm.bicicletas\colores.h
+
+1603303254 c:\users\mati\desktop\arrua.matias.abm.bicicletas\trabajos.h
+	"fecha.h"
+	"servicios.h"
+
+1603481732 source:c:\users\mati\desktop\arrua.matias.abm.bicicletas\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"bicicletas.h"
+	"trabajos.h"
+	"servicios.h"
+	"tipo.h"
+	"colores.h"
+	"informes.h"
+	"hardcodear.h"
+
+1603481976 c:\users\mati\desktop\arrua.matias.abm.bicicletas\hardcodear.h
+
+1603478334 source:c:\users\mati\desktop\arrua.matias.abm.bicicletas\tipo.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"bicicletas.h"
+	"trabajos.h"
+	"tipo.h"
+	"colores.h"
+
+1603484242 source:c:\users\mati\desktop\arrua.matias.abm.bicicletas\trabajos.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"bicicletas.h"
+	"trabajos.h"
+
+1603480007 source:c:\users\mati\desktop\arrua.matias.abm.bicicletas\bicicletas.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"bicicletas.h"
+	"trabajos.h"
+	"tipo.h"
+	"colores.h"
+
+1603304625 c:\users\mati\desktop\arrua.matias.abm.bicicletas\fecha.h
+
+1603484242 source:c:\users\mati\desktop\arrua.matias.abm.bicicletas\servicios.c
+	"servicios.h"
+
+1603484242 c:\users\mati\desktop\arrua.matias.abm.bicicletas\servicios.h
+
+1603481845 source:c:\users\mati\desktop\arrua.matias.abm.bicicletas\informes.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"bicicletas.h"
+	"trabajos.h"
+	"servicios.h"
+	"tipo.h"
+	"colores.h"
+	"informes.h"
+
+1603481697 c:\users\mati\desktop\arrua.matias.abm.bicicletas\informes.h
+
+1603494027 source:c:\users\mati\desktop\para entregar\arrua.matias.abm.bicicletas\bicicletas.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"bicicletas.h"
+	"trabajos.h"
+	"tipo.h"
+	"colores.h"
+	"cliente.h"
+
+1603493977 c:\users\mati\desktop\para entregar\arrua.matias.abm.bicicletas\bicicletas.h
+	"tipo.h"
+	"colores.h"
+	"cliente.h"
+
+1603494953 c:\users\mati\desktop\para entregar\arrua.matias.abm.bicicletas\tipo.h
+
+1603494363 c:\users\mati\desktop\para entregar\arrua.matias.abm.bicicletas\colores.h
+
+1603492490 c:\users\mati\desktop\para entregar\arrua.matias.abm.bicicletas\trabajos.h
+	"fecha.h"
+	"servicios.h"
+
+1603304625 c:\users\mati\desktop\para entregar\arrua.matias.abm.bicicletas\fecha.h
+
+1603494812 c:\users\mati\desktop\para entregar\arrua.matias.abm.bicicletas\servicios.h
+
+1603494027 source:c:\users\mati\desktop\para entregar\arrua.matias.abm.bicicletas\colores.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"bicicletas.h"
+	"trabajos.h"
+	"tipo.h"
+	"colores.h"
+
+1603494027 source:c:\users\mati\desktop\para entregar\arrua.matias.abm.bicicletas\informes.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"bicicletas.h"
+	"trabajos.h"
+	"servicios.h"
+	"tipo.h"
+	"colores.h"
+	"informes.h"
+
+1603494704 c:\users\mati\desktop\para entregar\arrua.matias.abm.bicicletas\informes.h
+
+1603492576 source:c:\users\mati\desktop\para entregar\arrua.matias.abm.bicicletas\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"bicicletas.h"
+	"trabajos.h"
+	"servicios.h"
+	"tipo.h"
+	"colores.h"
+	"informes.h"
+	"cliente.h"
+	"hardcodear.h"
+
+1603494367 c:\users\mati\desktop\para entregar\arrua.matias.abm.bicicletas\hardcodear.h
+
+1603494843 source:c:\users\mati\desktop\para entregar\arrua.matias.abm.bicicletas\servicios.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"servicios.h"
+
+1603494027 source:c:\users\mati\desktop\para entregar\arrua.matias.abm.bicicletas\tipo.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"bicicletas.h"
+	"trabajos.h"
+	"tipo.h"
+	"colores.h"
+
+1603494027 source:c:\users\mati\desktop\para entregar\arrua.matias.abm.bicicletas\trabajos.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"bicicletas.h"
+	"trabajos.h"
+	"cliente.h"
+
+1603494057 source:c:\users\mati\desktop\para entregar\arrua.matias.abm.bicicletas\cliente.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"cliente.h"
+
+1603494160 c:\users\mati\desktop\para entregar\arrua.matias.abm.bicicletas\cliente.h
 

@@ -4,6 +4,7 @@
 
 #include "bicicletas.h"
 #include "trabajos.h"
+#include "cliente.h"
 
 
 
@@ -16,18 +17,6 @@ void inicializarTrabajos(eTrabajo vec[], int tam )
     }
 }
 
-void listarServicios(eServicio servicios[], int tamSer )
-{
-
-    printf("*****Listado de Servicios*****\n\n");
-    printf("Id    Descripcion     Precio\n");
-
-    for(int i=0; i<tamSer; i++)
-    {
-        printf("%d   %10s  %4d\n",servicios[i].id, servicios[i].descripcion, servicios[i].precio);
-    }
-    printf("\n\n");
-}
 
 
 int buscarTrabajosLibres (eTrabajo vec[],int tamTra )
@@ -44,7 +33,7 @@ int buscarTrabajosLibres (eTrabajo vec[],int tamTra )
     return indice;
 }
 
-int altaTrabajo ( int idx,eBicicleta bicicletas[], int tamB, eColor colores[], int tamCol, eTipo tipos[], int tamTip, eTrabajo trabajos[], int tamTra, eServicio servicios[], int tamSer )
+int altaTrabajo ( int idx,eBicicleta bicicletas[], int tamB, eColor colores[], int tamCol, eTipo tipos[], int tamTip, eTrabajo trabajos[], int tamTra, eServicio servicios[], int tamSer, eCliente clientes[], int tamCliente )
 {
     int todoOk = 0;
     int indice = buscarTrabajosLibres(trabajos, tamTra);
@@ -63,7 +52,7 @@ int altaTrabajo ( int idx,eBicicleta bicicletas[], int tamB, eColor colores[], i
 
         auxTrabajo.id = idx;
 
-        listarBicicletas(bicicletas,tamB,colores,tamCol,tipos,tamTip);
+        listarBicicletas(bicicletas,tamB,colores,tamCol,tipos,tamTip,clientes,tamCliente);
         printf("***********************************************\n");
         printf("Seleccione el id de la bicicleta: \n\n");
         scanf("%d", &auxTrabajo.idBicicleta);
@@ -73,6 +62,11 @@ int altaTrabajo ( int idx,eBicicleta bicicletas[], int tamB, eColor colores[], i
         printf("***********************************************\n");
         printf("Seleccione el id del servicio: \n\n");
         scanf("%d", &auxTrabajo.idServicio);
+        auxTrabajo.idServicio= validarServicio(auxTrabajo.idServicio);
+
+
+        printf("ingrese una fecha(dd/mm/aaaa): ");
+        scanf("%d/%d/%d",&auxTrabajo.fecha.dia,&auxTrabajo.fecha.mes,&auxTrabajo.fecha.anio);
 
         auxTrabajo.isEmpty = 0;
 
@@ -90,15 +84,15 @@ int listarTrabajos(eBicicleta bicicletas[], int tamB, eColor colores[], int tamC
 
     int error =1;
 
-     char descColor[20];
-                char descTipo[20];
-                char descServicio[20];
+    char descColor[20];
+    char descTipo[20];
+    char descServicio[20];
 
 
     system("cls");
     printf("***** Trabajos *****\n\n ");
 
-     printf("       Id     Marca       Tipo        Color       Rodado        Servicio   \n");
+    printf(" IdBicicleta      IdTrabajo         Marca        Tipo          Color      Rodado   Servicio     Fecha \n");
 
     for(int i = 0; i < tamB; i++)
     {
@@ -107,9 +101,12 @@ int listarTrabajos(eBicicleta bicicletas[], int tamB, eColor colores[], int tamC
             if (bicicletas[i].id == trabajos[j].idBicicleta && bicicletas[i].isEmpty == 0 && trabajos[j].isEmpty == 0)
             {
                 cargarDescripcionColor(descColor,bicicletas[i].idColor,colores,tamCol);
+
                 cargarDescripcionTipo(descTipo,bicicletas[i].idTipo,tipos,tamTip);
-                cargarDescripcionServicio(descServicio,servicios[i].id,servicios,tamSer);
-                printf("%10d   %10s     %15s  %15s    %4d   %10s\n", bicicletas[i].id, bicicletas[i].marca, descTipo,descColor,bicicletas[i].rodado, descServicio);
+
+                cargarDescripcionServicio(descServicio,trabajos[j].idServicio,servicios,tamSer);
+
+                printf("%10d  %10d      %10s %15s %15s    %.2f   %10s    %d/%d/%d\n", bicicletas[i].id,trabajos[j].id, bicicletas[i].marca, descTipo,descColor,bicicletas[i].rodado, descServicio, trabajos[j].fecha.dia,trabajos[j].fecha.mes, trabajos[j].fecha.anio);
             }
         }
 
@@ -118,21 +115,4 @@ int listarTrabajos(eBicicleta bicicletas[], int tamB, eColor colores[], int tamC
 
 
     return error;
-}
-
-int cargarDescripcionServicio(char descripcion[], int id, eServicio servicios[], int tamSer )
-{
-
-    int todoOk = 0;
-    for(int i=0; i <tamSer; i++)
-    {
-        if(servicios[i].id == id)
-        {
-            strcpy(descripcion, servicios[i].descripcion);
-            todoOk = 1;
-
-        }
-
-    }
-    return todoOk;
 }

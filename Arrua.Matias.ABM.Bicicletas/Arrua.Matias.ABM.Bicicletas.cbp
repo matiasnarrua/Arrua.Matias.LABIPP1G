@@ -7,7 +7,7 @@
 		<Option compiler="gcc" />
 		<Build>
 			<Target title="Debug">
-				<Option output="bin/Debug/Arrua.Matias.ABM.Bicicletas" prefix_auto="1" extension_auto="1" />
+				<Option output="bin/Debug/Arrua" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj/Debug/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
@@ -16,7 +16,7 @@
 				</Compiler>
 			</Target>
 			<Target title="Release">
-				<Option output="bin/Release/Arrua.Matias.ABM.Bicicletas" prefix_auto="1" extension_auto="1" />
+				<Option output="bin/Release/Arrua" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj/Release/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
@@ -35,9 +35,31 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="bicicletas.h" />
+		<Unit filename="cliente.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="cliente.h" />
+		<Unit filename="colores.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="colores.h" />
+		<Unit filename="fecha.h" />
+		<Unit filename="hardcodear.h" />
+		<Unit filename="informes.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="informes.h" />
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="servicios.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="servicios.h" />
+		<Unit filename="tipo.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="tipo.h" />
 		<Unit filename="trabajos.c">
 			<Option compilerVar="CC" />
 		</Unit>

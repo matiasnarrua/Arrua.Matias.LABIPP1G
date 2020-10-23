@@ -4,6 +4,9 @@
 
 #include "bicicletas.h"
 #include "trabajos.h"
+#include "tipo.h"
+#include "colores.h"
+#include "cliente.h"
 
 int menu()
 {
@@ -11,7 +14,8 @@ int menu()
 
     system("cls");
     printf("***** Gestion de la Bicicleteria *****\n\n");
-    printf("1. Alta Bicicleta\n2. Modificar Bicicleta\n3. Baja Bicicleta\n4. Listar Bicicletas\n5. Listar Tipos\n6. Listar Colores\n7. Listar Servicios\n8. Alta Trabajo\n9. Listar Trabajos\n10. Salir\n\n");
+    printf("1. Alta Bicicleta\n2. Modificar Bicicleta\n3. Baja Bicicleta\n4. Listar Bicicletas\n5. Listar Tipos\n"
+           "6. Listar Colores\n7. Listar Servicios\n8. Alta Trabajo\n9. Listar Trabajos\n10. Informes\n11. Salir\n\n");
     fflush(stdin);
     printf("Ingrese opcion: ");
     scanf("%d", &opcion);
@@ -44,34 +48,9 @@ int buscarLibres (eBicicleta vec[],int tam )
     return indice;
 }
 
-void listarColores(eColor colores[], int tamCol )
-{
-
-    printf("*****Listado de Colores*****\n\n");
-    printf("Id    Descripcion\n");
-
-    for(int i=0; i<tamCol; i++)
-    {
-        printf("%d   %10s\n",colores[i].id, colores[i].nombreColor);
-    }
-    printf("\n\n");
-}
-void listarTipos(eTipo tipos [], int tamTip )
-{
-
-    printf("*****Listado de tipos*****\n\n");
-    printf("Id    Descripcion\n");
-
-    for(int i=0; i<tamTip; i++)
-    {
-        printf("%d   %10s\n",tipos[i].id, tipos[i].descripcion);
-    }
-    printf("\n\n");
-}
 
 
-
-int altaBicicleta (int idx,eBicicleta vec[], int tam, eColor colores[], int tamCol, eTipo tipos[], int tamTip )
+int altaBicicleta (int idx,eBicicleta vec[], int tam, eColor colores[], int tamCol, eTipo tipos[], int tamTip, eCliente clientes[], int tamCliente )
 {
     int todoOk = 0;
     int indice = buscarLibres(vec, tam);
@@ -100,27 +79,26 @@ int altaBicicleta (int idx,eBicicleta vec[], int tam, eColor colores[], int tamC
         scanf("%d", &auxBicicleta.idColor);
 
 
-        if(auxBicicleta.idColor <5000 || auxBicicleta.idColor>5004)
-        {
+        auxBicicleta.idColor = validarColor(auxBicicleta.idColor);
 
-            printf("\nError selecciones un id de color valido: ");
-            scanf("%d", &auxBicicleta.idColor);
-        }
 
         system("cls");
         listarTipos(tipos, tamTip);
         printf("\n Seleccione el id del Tipo de bicicleta:  ");
         scanf("%d", &auxBicicleta.idTipo);
 
-        if(auxBicicleta.idTipo <1000 || auxBicicleta.idTipo>1004)
-        {
+        auxBicicleta.idTipo = validarTipo(auxBicicleta.idTipo);
 
-            printf("\nError selecciones un id de Tipo de bicicleta valido:  ");
-            scanf("%d", &auxBicicleta.idTipo);
-        }
-        printf("ingrese rodado: ");
-        scanf("%d",&auxBicicleta.rodado);
+        printf("Ingrese rodado(20, 26, 27.5 o 29): ");
+        scanf("%f",&auxBicicleta.rodado);
 
+        auxBicicleta.rodado = validarRodado(auxBicicleta.rodado);
+        system("cls");
+        listarClientes(clientes,tamCliente);
+        printf("Seleccione el id del cliente: ");
+        scanf("%d",&auxBicicleta.idCliente);
+
+        auxBicicleta.idCliente = validarCliente(auxBicicleta.idCliente);
 
         auxBicicleta.isEmpty = 0;
 
@@ -132,51 +110,18 @@ int altaBicicleta (int idx,eBicicleta vec[], int tam, eColor colores[], int tamC
 }
 
 
-
-int cargarDescripcionColor(char descripcion[], int id, eColor colores[], int tamCol )
-{
-
-    int todoOk = 0;
-    for(int i=0; i <tamCol; i++)
-    {
-        if(colores[i].id == id)
-        {
-            strcpy(descripcion, colores[i].nombreColor);
-            todoOk = 1;
-
-        }
-
-    }
-    return todoOk;
-}
-int cargarDescripcionTipo(char descripcion[], int id, eTipo tipos[], int tamTip )
-{
-
-    int todoOk = 0;
-    for(int i=0; i <tamTip; i++)
-    {
-        if(tipos[i].id == id)
-        {
-            strcpy(descripcion, tipos[i].descripcion);
-            todoOk = 1;
-
-        }
-
-    }
-    return todoOk;
-}
-void mostrarBicicleta (eBicicleta bicicletas, eColor colores[], int tamCol,eTipo tipos[], int tamTip)
+void mostrarBicicleta (eBicicleta bicicletas, eColor colores[], int tamCol,eTipo tipos[], int tamTip, eCliente clientes[], int tamCliente)
 {
     char descColor[20];
-    char descMarca[20];
+    char descTipo[20];
 
     cargarDescripcionColor(descColor,bicicletas.idColor,colores,tamCol);
-    cargarDescripcionTipo(descMarca,bicicletas.idTipo,tipos,tamTip);
-    printf("%10d   %10s     %15s  %15s  %4d\n", bicicletas.id, bicicletas.marca, descMarca,descColor,bicicletas.rodado);
+    cargarDescripcionTipo(descTipo,bicicletas.idTipo,tipos,tamTip);
+    printf("%10d   %10s     %15s  %15s  %2.2f\n", bicicletas.id, bicicletas.marca, descTipo,descColor,bicicletas.rodado);
 
 }
 
-void listarBicicletas(eBicicleta bicicletas[], int tamB, eColor colores[], int tamCol,eTipo tipos[], int tamTip)
+void listarBicicletas(eBicicleta bicicletas[], int tamB, eColor colores[], int tamCol,eTipo tipos[], int tamTip, eCliente clientes[], int tamCliente)
 {
 
     int flag = 0;
@@ -184,13 +129,13 @@ void listarBicicletas(eBicicleta bicicletas[], int tamB, eColor colores[], int t
     system("cls");
     printf("*****Listado de bicicletas*****\n\n");
 
-    printf("       Id     Marca         Marca              Color     rodado  \n");
+    printf("       Id     Marca                 Tipo             Color     rodado    Nombre Cliente \n");
 
     for(int i=0; i<tamB; i++)
     {
         if(bicicletas[i].isEmpty == 0 )
         {
-            mostrarBicicleta (bicicletas [i], colores, tamCol,tipos, tamTip);
+            mostrarBicicleta (bicicletas [i], colores, tamCol,tipos, tamTip,clientes,tamCliente);
             flag = 1;
         }
     }
@@ -217,18 +162,22 @@ int buscarBicicleta (int id,eBicicleta bicicletas[],int tamB )
 
 
 
-void modificarBicicleta (eBicicleta bicicletas[], int tamB, eColor colores[], int tamCol,eTipo tipos[], int tamTip)
+void modificarBicicleta (eBicicleta bicicletas[], int tamB, eColor colores[], int tamCol,eTipo tipos[], int tamTip, eCliente clientes[], int tamCliente)
 {
     int id ;
     int indice;
     char confirma;
     int opcion;
     int nuevo;
+    float nuevoRodado;
 
 
 
     system("cls");
     printf("***** Modificar Bicicleta *****\n\n");
+
+    listarBicicletas(bicicletas,tamB,colores,tamCol,tipos,tamTip,clientes,tamCliente);
+
     printf("Ingrese id: ");
     scanf("%d", &id);
     indice = buscarBicicleta(id, bicicletas, tamB);
@@ -239,7 +188,7 @@ void modificarBicicleta (eBicicleta bicicletas[], int tamB, eColor colores[], in
     }
     else
     {
-        mostrarBicicleta(bicicletas[indice],colores, tamCol,tipos,tamTip);
+        mostrarBicicleta(bicicletas[indice],colores, tamCol,tipos,tamTip,clientes,tamCliente);
 
         printf("Modificar esta Bicicleta[S/N] ?");
         fflush(stdin);
@@ -260,6 +209,7 @@ void modificarBicicleta (eBicicleta bicicletas[], int tamB, eColor colores[], in
 
                 printf("Seleccione el id del nuevo Tipo de bicicleta: ");
                 scanf("%d",&nuevo);
+                nuevo = validarTipo(nuevo);
                 bicicletas[indice].idTipo = nuevo;
                 printf("Se ha actualizado el Tipo de bicicleta con exito \n\n");
 
@@ -267,9 +217,11 @@ void modificarBicicleta (eBicicleta bicicletas[], int tamB, eColor colores[], in
             case 2:
                 system("cls");
                 printf("****Modificar Rodado****\n\n");
-                printf("Ingrese el nuevo rodado: ");
-                scanf("%d",&nuevo);
-                bicicletas[indice].rodado = nuevo;
+                printf("Ingrese nuevo rodado(20, 26, 27.5 o 29): : ");
+                scanf("%f",&nuevoRodado);
+                nuevoRodado = validarRodado(nuevoRodado);
+
+                bicicletas[indice].rodado = nuevoRodado;
                 printf("Se ha actualizado el rodado con exito \n\n");
                 break;
             }
@@ -285,14 +237,16 @@ void modificarBicicleta (eBicicleta bicicletas[], int tamB, eColor colores[], in
 
 
 
-void bajaBicicleta (eBicicleta bicicletas[], int tamB, eColor colores[], int tamCol,eTipo tipos[], int tamTip )
+void bajaBicicleta (eBicicleta bicicletas[], int tamB, eColor colores[], int tamCol,eTipo tipos[], int tamTip, eCliente clientes[], int tamCliente )
 {
     int id ;
     int indice;
     char confirma;
     system("cls");
     printf("*****Baja Bicicleta *****\n\n");
-    printf("Ingrese id: ");
+
+    listarBicicletas(bicicletas,tamB,colores,tamCol,tipos,tamTip,clientes,tamCliente);
+    printf("\nIngrese id: ");
     scanf("%d", &id);
     indice = buscarBicicleta(id, bicicletas, tamB);
 
@@ -303,7 +257,7 @@ void bajaBicicleta (eBicicleta bicicletas[], int tamB, eColor colores[], int tam
     }
     else
     {
-        mostrarBicicleta (bicicletas[indice],colores, tamCol,tipos,tamTip);
+        mostrarBicicleta (bicicletas[indice],colores, tamCol,tipos,tamTip,clientes,tamCliente);
         printf("Confirma baja[S/N] ?");
         fflush(stdin);
         scanf("%c", &confirma);
@@ -319,4 +273,51 @@ void bajaBicicleta (eBicicleta bicicletas[], int tamB, eColor colores[], int tam
         }
     }
 }
+
+
+void ordenarBicicletas(eBicicleta bicicletas[], int tamB)
+{
+    eBicicleta auxBicicleta;
+    for(int i=0; i<tamB-1; i++)
+    {
+        for(int j= i+1; j<tamB; j++)
+        {
+
+            if( bicicletas[i].idTipo > bicicletas[j].idTipo)
+            {
+
+                auxBicicleta = bicicletas[i];
+                bicicletas[i]=bicicletas[j];
+                bicicletas[j] = auxBicicleta;
+            }
+            else if (bicicletas[i].idTipo == bicicletas[j].idTipo && bicicletas[i].rodado < bicicletas[j].rodado)
+            {
+                auxBicicleta=bicicletas[i];
+                bicicletas[i]=bicicletas[j];
+                bicicletas[j] = auxBicicleta;
+            }
+
+        }
+    }
+}
+
+
+float validarRodado(float rodado)
+{
+
+    do
+    {
+
+        if(!(rodado == 20 || rodado == 26 || rodado == 27.5 || rodado == 29))
+        {
+
+            printf("\nError selecciones un rodado valido (20, 26, 27.5 o 29): ");
+            scanf("%f", &rodado);
+        }
+    }
+    while(!(rodado == 20 || rodado == 26 || rodado == 27.5 || rodado == 29));
+
+    return rodado;
+}
+
 
